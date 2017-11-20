@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- Pomodoro Clock -->
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>Hello...</title>
+<style type="text/css">
+
+</style>
+</head>
+
+
+<body>
+<h1>Pomodoro Clock</h1>
+<h3>Session</h3>
+<button class="add_minute" onclick="addMinute()">Add Minute</button>
+<div id="minutes_to_countdown">25</div>
+<button class="subtract_minute" onclick="subtractMinute()">Subtract Minute</button>
+
+<div>
+<h3>Break</h3>
+<button class="add_minute" onclick="addMinuteBreak()">Add Break Minute</button>
+<div id="minutes_to_break">5</div>
+<button class="subtract_minute" onclick="subtractMinuteBreak()">Subtract Break Minute</button>
+</div>
+
+<h3>Session Countdown</h3>
+<div id="work_timer">
+	<div id="work_time_count">25:00</div>
+  <button onclick="startfunction()">Start</button>
+  <button onclick="pausefunction()">Pause</button>
+</div>
+
+<div id="break_timer">
+	<div id="break_time_count"></div>
+</div>
+
+<script>
+  var minutestoCountdown = 25.00
+  var minutestoBreak = 5.00
+
+  var endingTime = Date.now() + minutestoCountdown * 60000 //25 minutes from now (in ms)
+
+/*
+  var timerInterval = setInterval(function(){
+   var time = endingTime - Date.now(); // 25 (in ms 99980239840238)
+  var minutes = new Date(time).getMinutes(); //grabs minutes from huge number above
+  var seconds = new Date(time).getSeconds(); //grabs seconds from time variable
+  document.getElementById("work_time_count").innerHTML = minutes + ":" + seconds
+},1000)
+*/
+
+//var timerInterval = setInterval(function(){myfunction() }, 1000);
+
+
+/*function myfunction() {
+  var time = endingTime - Date.now(); // 25 (in ms 99980239840238)
+  var minutes = new Date(time).getMinutes(); //grabs minutes from huge number above
+  var seconds = new Date(time).getSeconds(); //grabs seconds from time variable
+  document.getElementById("work_time_count").innerHTML = minutes + ":" + seconds
+}
+*/
+
+function startfunction() {
+  timerInterval = setInterval(function(){
+  var time = endingTime - Date.now(); // 25 (in ms 99980239840238)
+  var minutes = new Date(time).getMinutes(); //grabs minutes from huge number above
+  var seconds = new Date(time).getSeconds(); //grabs seconds from time variable
+  document.getElementById("work_time_count").innerHTML = minutes + ":" + seconds
+  }, 1000);
+}
+
+function pausefunction() {
+   clearInterval(timerInterval);
+}
+
+function addMinute() {
+    minutestoCountdown++;
+		document.querySelector('#minutes_to_countdown').innerHTML = minutestoCountdown;
+}
+
+function subtractMinute() {
+    minutestoCountdown--;
+		document.querySelector('#minutes_to_countdown').innerHTML = minutestoCountdown;
+}
+
+function addMinuteBreak() {
+    minutestoBreak++;
+		document.querySelector('#minutes_to_break').innerHTML = minutestoBreak;
+}
+
+function subtractMinuteBreak() {
+    minutestoBreak--;
+		document.querySelector('#minutes_to_break').innerHTML = minutestoBreak;
+}
+
+
+
+</script>
+</body>
+</html>
